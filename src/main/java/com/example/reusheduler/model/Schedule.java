@@ -2,9 +2,7 @@ package com.example.reusheduler.model;
 
 import jakarta.persistence.*;
 import lombok.*;
-//import org.springframework.data.annotation.Id;
-//import org.springframework.data.relational.core.mapping.Column;
-//import org.springframework.data.relational.core.mapping.Table;
+
 
 import java.time.LocalDateTime;
 
@@ -14,10 +12,15 @@ import java.time.LocalDateTime;
 @Builder
 @RequiredArgsConstructor
 @AllArgsConstructor
+@Entity
+@ToString
+
 public class Schedule {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
+    @Column(name = "id", nullable = false)
+
     private Long id;
 
     @Column(name = "module")
@@ -25,10 +28,4 @@ public class Schedule {
 
     @Column(name = "createDate")
     private LocalDateTime createDate;
-
-    @Column(name = "createDate1")
-    private LocalDateTime createDate123;
-
-    @Column(name = "createDate11")
-    private LocalDateTime createDate111112;
 }

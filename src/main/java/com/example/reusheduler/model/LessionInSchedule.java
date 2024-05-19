@@ -1,11 +1,8 @@
 package com.example.reusheduler.model;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
+import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Column;
-import org.springframework.data.relational.core.mapping.Table;
+
 
 import java.time.LocalDate;
 
@@ -14,16 +11,23 @@ import java.time.LocalDate;
 @Builder
 @RequiredArgsConstructor
 @AllArgsConstructor
+@Entity
+@ToString
+
 public class LessionInSchedule {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
+    @Column(name = "id", nullable = false)
+
     private Long id;
 
-    @Column("number")
+    @Column(name = "number")
     private Long number;
 
-    @Column("studyDay")
+    @Column(name = "studyDay")
     private LocalDate studyDate;
+
+
 
 }

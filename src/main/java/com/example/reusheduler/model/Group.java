@@ -1,26 +1,28 @@
 package com.example.reusheduler.model;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
+import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Column;
-import org.springframework.data.relational.core.mapping.Table;
+
 
 @Table(name = "group", schema = "REUScheduler")
 @Data
 @Builder
 @RequiredArgsConstructor
 @AllArgsConstructor
+@Entity
+@ToString
+
 public class Group {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
+    @Column(name = "id", nullable = false)
+
     private Long id;
 
-    @Column("groupNumber")
+    @Column(name = "groupNumber")
     private Long groupNumber;
 
-    @Column("direction")
+    @Column(name = "direction")
     private String direction;
 }

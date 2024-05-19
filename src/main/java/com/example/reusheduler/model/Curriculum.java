@@ -1,13 +1,12 @@
 package com.example.reusheduler.model;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Column;
-import org.springframework.data.relational.core.mapping.Table;
+
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 
 @Table(name = "curriculum", schema = "REUScheduler")
@@ -15,17 +14,28 @@ import java.time.LocalDateTime;
 @Builder
 @RequiredArgsConstructor
 @AllArgsConstructor
+@Entity
+@ToString
+
 public class Curriculum {
 
+
     @Id
-    @GeneratedValue(strategy =  GenerationType.IDENTITY)
+    @GeneratedValue(strategy =  GenerationType.AUTO)
+    @Column(name = "id", nullable = false)
+
     private Long id;
 
-    @Column("module")
+    @Column(name = "module")
     private String module;
 
-    @Column("createDate")
+    @Column(name = "createDate")
     private LocalDateTime createDate;
+
+    @ManyToMany(mappedBy = "curriculumList", fetch = FetchType.EAGER)
+    @JsonIgnore
+    private List<Lession> lessionList;
+
 
 }
 

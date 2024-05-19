@@ -1,11 +1,9 @@
 package com.example.reusheduler.model;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Column;
-import org.springframework.data.relational.core.mapping.Table;
+
 
 import java.util.List;
 
@@ -14,17 +12,25 @@ import java.util.List;
 @Builder
 @RequiredArgsConstructor
 @AllArgsConstructor
+@Entity
+@ToString
+
 public class Department {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy =  GenerationType.SEQUENCE)
+    @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column("name")
+    @Column(name = "name")
     private String name;
 
 
-//    @OneToMany()
+    @OneToMany(mappedBy = "department", cascade = CascadeType.ALL, orphanRemoval = true)
 //    @JoinColumn(name = "user_id")
-//    private List<Professor> professorList;
+    private List<Professor> professorList;
+
+    @ManyToMany(mappedBy = "departmentList", fetch = FetchType.EAGER)
+    @JsonIgnore
+    private List<Lession> lessionList;
 }
