@@ -2,15 +2,16 @@ package com.example.reusheduler.model;
 
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
-@Table(name = "REUScheduler.group")
+@Table(name = "group", schema = "REUScheduler")
 @Data
 @Builder
+@RequiredArgsConstructor
+@AllArgsConstructor
 public class Group {
 
     @Id

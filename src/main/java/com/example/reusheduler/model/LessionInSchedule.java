@@ -2,17 +2,18 @@ package com.example.reusheduler.model;
 
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.time.LocalDate;
 
-@Table(name = "REUScheduler.lessionInSchedule")
+@Table(name = "lessionInSchedule", schema = "REUScheduler")
 @Data
 @Builder
+@RequiredArgsConstructor
+@AllArgsConstructor
 public class LessionInSchedule {
 
     @Id
@@ -24,6 +25,5 @@ public class LessionInSchedule {
 
     @Column("studyDay")
     private LocalDate studyDate;
-
 
 }

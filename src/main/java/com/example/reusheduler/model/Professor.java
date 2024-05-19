@@ -2,17 +2,16 @@ package com.example.reusheduler.model;
 
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-import jakarta.persistence.ManyToOne;
-import lombok.Builder;
-import lombok.Data;
-import org.hibernate.annotations.Generated;
+import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
-@Table(name = "REUScheduler.professor")
+@Table(name = "professor", schema = "REUScheduler")
 @Data
 @Builder
+@RequiredArgsConstructor
+@AllArgsConstructor
 public class Professor {
 
     @Id
@@ -25,7 +24,6 @@ public class Professor {
     @Column("workHours")
     private Long workHours;
 
-    @ManyToOne()
-    private Department department;
-
+//    @ManyToOne()
+//    private Department department;
 }

@@ -2,8 +2,7 @@ package com.example.reusheduler.model;
 
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
@@ -11,13 +10,15 @@ import org.springframework.data.relational.core.mapping.Table;
 import java.time.LocalDateTime;
 
 
-@Table(name = "REUScheduler.curriculum")
+@Table(name = "curriculum", schema = "REUScheduler")
 @Data
 @Builder
+@RequiredArgsConstructor
+@AllArgsConstructor
 public class Curriculum {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy =  GenerationType.IDENTITY)
     private Long id;
 
     @Column("module")
@@ -25,5 +26,6 @@ public class Curriculum {
 
     @Column("createDate")
     private LocalDateTime createDate;
+
 }
 

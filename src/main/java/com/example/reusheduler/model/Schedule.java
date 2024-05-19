@@ -1,30 +1,34 @@
 package com.example.reusheduler.model;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import lombok.Builder;
-import lombok.Data;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Column;
-import org.springframework.data.relational.core.mapping.Table;
+import jakarta.persistence.*;
+import lombok.*;
+//import org.springframework.data.annotation.Id;
+//import org.springframework.data.relational.core.mapping.Column;
+//import org.springframework.data.relational.core.mapping.Table;
 
 import java.time.LocalDateTime;
 
 
-@Table(name = "REUScheduler.schedule")
+@Table(name = "schedule", schema = "REUScheduler")
 @Data
 @Builder
+@RequiredArgsConstructor
+@AllArgsConstructor
 public class Schedule {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
 
-    @Column("module")
+    @Column(name = "module")
     private String module;
 
-    @Column("createDate")
+    @Column(name = "createDate")
     private LocalDateTime createDate;
 
+    @Column(name = "createDate1")
+    private LocalDateTime createDate123;
 
+    @Column(name = "createDate11")
+    private LocalDateTime createDate111112;
 }
