@@ -1,18 +1,18 @@
 package com.example.reusheduler.dto;
 
+
 import lombok.Builder;
 import lombok.Data;
 import lombok.ToString;
 
-import java.util.List;
-
-
 @Builder
 @ToString
 @Data
-public class DepartmentFillDTO {
+public class LessionDTO {
 
-    private String mane;
 
-    private List<Long> lessions;
+    private Long id;
+
+    private String name;
+
 }
