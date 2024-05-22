@@ -2,9 +2,14 @@ package com.example.reusheduler.controller;
 
 import com.example.reusheduler.dto.DepartmentDTO;
 import com.example.reusheduler.dto.DepartmentRespDTO;
+import com.example.reusheduler.model.Department;
+import com.example.reusheduler.model.Lession;
 import com.example.reusheduler.repository.DepartmentRepository;
+import com.example.reusheduler.repository.LessionRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
@@ -16,8 +21,11 @@ public class DepartmentController {
 
     private final DepartmentRepository departmentRepository;
 
-    public DepartmentController(DepartmentRepository departmentRepository) {
+    private final LessionRepository lessionRepository;
+
+    public DepartmentController(DepartmentRepository departmentRepository, LessionRepository lessionRepository) {
         this.departmentRepository = departmentRepository;
+        this.lessionRepository = lessionRepository;
     }
 
 //    @PostMapping("/fill/depatment")
@@ -40,4 +48,25 @@ public class DepartmentController {
         });
         return departmentRespDTOS;
     }
+
+    @PostMapping("/fill/department")
+    public ResponseEntity<Object> saveDepartments(@RequestBody DepartmentDTO departmentDTO){
+        if(departmentRepository.existsByName(departmentDTO.getName())){
+            return ResponseEntity.badRequest().build();
+        }
+        else {
+            List<Lession> lessions = new ArrayList<>();
+            departmentDTO.getLessions().forEach(x -> lessions.add(lessionRepository.findById(x).get()));
+            Department departmentdb = departmentRepository.findFirstByOrderByIdDesc();
+            Department department = Department
+                    .builder()
+                    .id(departmentdb.getId() + 1)
+                    .name(departmentDTO.getName())
+                    .lessionList(lessions)
+                    .build();
+            departmentRepository.save(department);
+            return ResponseEntity.ok().build();
+        }
+    }
+
 }

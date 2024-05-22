@@ -4,15 +4,12 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.ToString;
 
-import java.util.List;
-
 
 @Builder
 @ToString
 @Data
-public class DepartmentDTO {
+public class LessionForCirr {
+    private String lessionName;
 
-    private String name;
-
-    private List<Long> lessions;
+    private Long hour;
 }

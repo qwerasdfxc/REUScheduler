@@ -6,13 +6,17 @@ import lombok.ToString;
 
 import java.util.List;
 
-
 @Builder
 @ToString
 @Data
-public class DepartmentDTO {
+public class CirriculumDTO {
 
-    private String name;
+    private String groupNumber;
 
-    private List<Long> lessions;
+    private Long moduleNumber;
+
+    private List<LessionForCirr> lessions;
+
 }
+
+
