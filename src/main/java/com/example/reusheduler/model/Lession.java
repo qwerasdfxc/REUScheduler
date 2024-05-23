@@ -1,5 +1,6 @@
 package com.example.reusheduler.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -31,6 +32,7 @@ public class Lession {
     joinColumns = @JoinColumn(name = "lession_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "department_id", referencedColumnName = "id")
     )
+    @JsonIgnore
     private List<Department> departmentList;
 
 
@@ -40,5 +42,6 @@ public class Lession {
             joinColumns = @JoinColumn(name = "curriculum_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "department_id", referencedColumnName = "id")
     )
+    @JsonIgnore
     private List<Curriculum> curriculumList;
 }

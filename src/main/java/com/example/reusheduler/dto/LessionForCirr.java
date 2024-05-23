@@ -11,5 +11,7 @@ import lombok.ToString;
 public class LessionForCirr {
     private String lessionName;
 
-    private Long hour;
+    private Long lessonId;
+
+    private Long hours;
 }

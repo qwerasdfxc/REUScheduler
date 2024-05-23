@@ -1,7 +1,11 @@
 package com.example.reusheduler.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.BatchSize;
+
+import java.util.List;
 
 
 @Table(name = "group", schema = "REUScheduler")
@@ -25,4 +29,9 @@ public class Group {
 
     @Column(name = "direction")
     private String direction;
+
+    @OneToMany(mappedBy = "group")
+    @BatchSize(size = 1000)
+    @JsonIgnore
+    private List<Curriculum> curriculum;
 }

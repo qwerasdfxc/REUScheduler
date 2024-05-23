@@ -13,9 +13,12 @@ public class CirriculumDTO {
 
     private String groupNumber;
 
-    private Long moduleNumber;
+    private Long groupId;
 
-    private List<LessionForCirr> lessions;
+
+    private Long module;
+
+    private List<LessionForCirr> lessons;
 
 }
 

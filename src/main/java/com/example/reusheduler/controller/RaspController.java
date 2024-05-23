@@ -23,8 +23,10 @@ public class RaspController {
         this.scheduleRepository = scheduleRepository;
     }
 
+
+    //TODO
     @GetMapping("/view/rasp")
     public Schedule viewRasp(@RequestBody RaspDTO raspDTO){
-
+        return null;
     }
 }
