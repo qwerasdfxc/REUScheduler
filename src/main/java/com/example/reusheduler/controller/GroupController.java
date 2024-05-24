@@ -29,9 +29,9 @@ public class GroupController {
     }
 
     @PostMapping("/fill/group")
-    public ResponseEntity<Object> objectResponseEntity(@RequestParam Long groupNumber,
+    public ResponseEntity<Object> objectResponseEntity(@RequestParam String groupNumber,
                                                        @RequestParam String direction){
-        if(groupRepository.existsByGroupNumber(groupNumber))
+        if(!groupRepository.existsByGroupNumber(groupNumber))
             return ResponseEntity.badRequest().build();
         else {
             Group groupDB = groupRepository.findFirstByOrderByIdDesc();

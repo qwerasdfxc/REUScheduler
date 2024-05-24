@@ -25,7 +25,7 @@ public class Group {
     private Long id;
 
     @Column(name = "groupNumber")
-    private Long groupNumber;
+    private String groupNumber;
 
     @Column(name = "direction")
     private String direction;

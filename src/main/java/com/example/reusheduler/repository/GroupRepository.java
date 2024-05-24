@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface GroupRepository extends CrudRepository<Group, Long> {
-    boolean existsByGroupNumber(Long groupNumber);
+    boolean existsByGroupNumber(String groupNumber);
 
     Group findFirstByOrderByIdDesc();
 
