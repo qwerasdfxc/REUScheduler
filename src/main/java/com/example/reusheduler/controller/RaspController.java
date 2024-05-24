@@ -4,6 +4,7 @@ package com.example.reusheduler.controller;
 import com.example.reusheduler.dto.RaspDTO;
 import com.example.reusheduler.model.Schedule;
 import com.example.reusheduler.repository.ScheduleRepository;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 //четвертый модуль (01.04 – 31.06)
 
 @RestController
+@CrossOrigin
+
 public class RaspController {
 
     private final ScheduleRepository scheduleRepository;

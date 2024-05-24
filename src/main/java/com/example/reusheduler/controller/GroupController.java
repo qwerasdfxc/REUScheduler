@@ -3,16 +3,15 @@ package com.example.reusheduler.controller;
 import com.example.reusheduler.model.Group;
 import com.example.reusheduler.repository.GroupRepository;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 @RestController
+@CrossOrigin
+
 public class GroupController {
 
     private final GroupRepository groupRepository;
