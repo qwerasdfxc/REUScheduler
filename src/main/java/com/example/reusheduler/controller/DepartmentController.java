@@ -59,7 +59,7 @@ public class DepartmentController {
             Department departmentdb = departmentRepository.findFirstByOrderByIdDesc();
             Department department = Department
                     .builder()
-                    .id(departmentdb.getId() + 1)
+                    .id(departmentdb.getId() +  (long)(Math.random()*200))
                     .name(departmentDTO.getName())
                     .lessionList(lessions)
                     .build();
