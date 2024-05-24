@@ -31,9 +31,9 @@ public class GroupController {
 
     @PostMapping("/fill/group")
     public ResponseEntity<Object> objectResponseEntity(@RequestBody TestDTO testDTO){
-        if(!groupRepository.existsByGroupNumber(testDTO.getGroupNumber()))
-            return ResponseEntity.badRequest().build();
-        else {
+//        if(!groupRepository.existsByGroupNumber(testDTO.getGroupNumber()))
+//            return ResponseEntity.badRequest().build();
+//        else {
             Group groupDB = groupRepository.findFirstByOrderByIdDesc();
 
             Group group = Group.builder()
@@ -44,7 +44,7 @@ public class GroupController {
             groupRepository.save(group);
 
             return ResponseEntity.ok().build();
-        }
+//        }
     }
 
 }
