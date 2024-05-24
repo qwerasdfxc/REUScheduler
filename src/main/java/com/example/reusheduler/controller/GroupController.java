@@ -1,5 +1,6 @@
 package com.example.reusheduler.controller;
 
+import com.example.reusheduler.dto.TestDTO;
 import com.example.reusheduler.model.Group;
 import com.example.reusheduler.repository.GroupRepository;
 import org.springframework.http.ResponseEntity;
@@ -29,17 +30,16 @@ public class GroupController {
     }
 
     @PostMapping("/fill/group")
-    public ResponseEntity<Object> objectResponseEntity(@RequestParam String groupNumber,
-                                                       @RequestParam String direction){
-        if(!groupRepository.existsByGroupNumber(groupNumber))
+    public ResponseEntity<Object> objectResponseEntity(@RequestBody TestDTO testDTO){
+        if(!groupRepository.existsByGroupNumber(testDTO.getGroupNumber()))
             return ResponseEntity.badRequest().build();
         else {
             Group groupDB = groupRepository.findFirstByOrderByIdDesc();
 
             Group group = Group.builder()
                     .id(groupDB.getId()+1)
-                    .groupNumber(groupNumber)
-                    .direction(direction)
+                    .groupNumber(testDTO.getGroupNumber())
+                    .direction(testDTO.getDirection())
                     .build();
             groupRepository.save(group);
 
