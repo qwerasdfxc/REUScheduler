@@ -59,6 +59,7 @@ public class CurriculumController {
 //        return null;
     }
 
+    //TODO
     @PostMapping("/fill/curriculum")
     public ResponseEntity<Object> fillcirr(@RequestBody CirriculumDTO cirriculumDTO) {
 
@@ -83,8 +84,7 @@ public class CurriculumController {
                 .module(String.valueOf(cirriculumDTO.getModule()))
                 .id(curriculumdb.getId()+1)
                 .lessionList(lessions)
-                //TODO
-                .group(new Group())
+                .group(Group.builder().id(cirriculumDTO.getGroupId()).build())
                 .build();
 
         curriculumRepositoty.save(curriculum);

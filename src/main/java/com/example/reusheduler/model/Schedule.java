@@ -2,11 +2,13 @@ package com.example.reusheduler.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.BatchSize;
 //import org.springframework.data.annotation.Id;
 //import org.springframework.data.relational.core.mapping.Column;
 //import org.springframework.data.relational.core.mapping.Table;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 
 @Table(name = "schedule", schema = "REUScheduler")
@@ -16,8 +18,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Entity
 @ToString
-
-public class Schedule {
+public class  Schedule {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
@@ -30,4 +31,8 @@ public class Schedule {
 
     @Column(name = "createDate")
     private LocalDateTime createDate;
+
+
+    @OneToMany(mappedBy = "schedule")
+    private List<LessionInSchedule> scheduleList;
 }

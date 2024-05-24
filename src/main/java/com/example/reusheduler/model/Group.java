@@ -30,7 +30,7 @@ public class Group {
     @Column(name = "direction")
     private String direction;
 
-    @OneToMany(mappedBy = "group")
+    @OneToMany(mappedBy = "group", fetch = FetchType.LAZY)
     @BatchSize(size = 1000)
     @JsonIgnore
     private List<Curriculum> curriculum;
