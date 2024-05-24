@@ -36,7 +36,7 @@ public class ProfessorController {
                 .professorName(professorDTO.getProfessorName())
                 .workHours(professorDTO.getWorkHours())
                 .department(department)
-                .id(professorRepository.findFirstByOrderByIdDesc().getId() + 1)
+                .id(professorRepository.findFirstByOrderByIdDesc().getId() + 2)
                 .build();
         professorRepository.save(professor);
         return ResponseEntity.ok().body("{\"sussess\":true}");
