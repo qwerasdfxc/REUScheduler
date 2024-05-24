@@ -14,12 +14,11 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @ToString
-
 public class Department {
 
     @Id
     @GeneratedValue(strategy =  GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
+    @Column(name = "id", nullable = true)
     private Long id;
 
     @Column(name = "name")

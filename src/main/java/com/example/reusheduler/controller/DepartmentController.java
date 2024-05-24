@@ -55,7 +55,9 @@ public class DepartmentController {
         }
         else {
             List<Lession> lessions = new ArrayList<>();
-            departmentDTO.getLessions().forEach(x -> lessions.add(lessionRepository.findById(x).get()));
+//            departmentDTO.getLessions().forEach(x -> lessions.add(lessionRepository.findById(x).get()));
+            departmentDTO.getLessions().forEach(x -> lessions.add(Lession.builder().id(x).build()));
+
             Department departmentdb = departmentRepository.findFirstByOrderByIdDesc();
             Department department = Department
                     .builder()
@@ -63,6 +65,7 @@ public class DepartmentController {
                     .name(departmentDTO.getName())
                     .lessionList(lessions)
                     .build();
+            department.setId(234234L);
             departmentRepository.save(department);
             return ResponseEntity.ok().build();
         }
