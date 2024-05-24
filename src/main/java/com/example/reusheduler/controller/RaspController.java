@@ -39,7 +39,7 @@ public class RaspController {
     }
 
     @PostMapping("/fill/rasp")
-    public ResponseEntity viewRasasdp(@RequestBody RaspDTO raspDTO){
+    public ResponseEntity viewRasasdp(){
 
 
 //        groupRepository.findById(raspDTO.getGroupId())
