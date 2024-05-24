@@ -1,6 +1,7 @@
 package com.example.reusheduler.controller;
 
 import com.example.reusheduler.dto.CirriculumDTO;
+import com.example.reusheduler.dto.CurrInputDTO;
 import com.example.reusheduler.model.Curriculum;
 import com.example.reusheduler.model.Group;
 import com.example.reusheduler.model.Lession;
@@ -36,17 +37,15 @@ public class CurriculumController {
 
     //TODO
     @GetMapping("/view/curriculum")
-    public ResponseEntity<List<Curriculum>> viewCurriculum(@RequestParam(required = false) Long groupId,
-                                                           @RequestParam(required = false) Long module
-    ) {
+    public ResponseEntity<List<Curriculum>> viewCurriculum(@RequestBody CurrInputDTO currInputDTO) {
 
-        if (Objects.isNull(groupId) && Objects.isNull(module)) {
+        if (Objects.isNull(currInputDTO.getGroupId()) && Objects.isNull(currInputDTO.getModule())) {
             List<Curriculum> curriculumList = new ArrayList<>();
             curriculumRepositoty.findAll().forEach(x -> curriculumList.add(x));
             return ResponseEntity.badRequest().build();
         }
 
-        List<Curriculum> repositotyAllByGroup = curriculumRepositoty.findAllByGroup(groupRepository.findById(groupId).get());
+        List<Curriculum> repositotyAllByGroup = curriculumRepositoty.findAllByGroup(groupRepository.findById(currInputDTO.getGroupId()).get());
 
 //        repositotyAllByGroup.forEach(curr -> curr.get);
 
