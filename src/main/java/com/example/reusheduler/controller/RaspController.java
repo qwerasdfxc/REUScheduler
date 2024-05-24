@@ -3,11 +3,10 @@ package com.example.reusheduler.controller;
 
 import com.example.reusheduler.dto.RaspDTO;
 import com.example.reusheduler.model.Schedule;
+import com.example.reusheduler.repository.GroupRepository;
 import com.example.reusheduler.repository.ScheduleRepository;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 
 //первый модуль (01.09 – 31.10),
@@ -22,14 +21,28 @@ public class RaspController {
 
     private final ScheduleRepository scheduleRepository;
 
-    public RaspController(ScheduleRepository scheduleRepository) {
+
+    private final GroupRepository groupRepository;
+    public RaspController(ScheduleRepository scheduleRepository, GroupRepository groupRepository) {
         this.scheduleRepository = scheduleRepository;
+        this.groupRepository = groupRepository;
     }
 
 
     //TODO
     @GetMapping("/view/rasp")
     public Schedule viewRasp(@RequestBody RaspDTO raspDTO){
+
+
+//        groupRepository.findById(raspDTO.getGroupId())
         return null;
+    }
+
+    @PostMapping("/fill/rasp")
+    public ResponseEntity viewRasasdp(@RequestBody RaspDTO raspDTO){
+
+
+//        groupRepository.findById(raspDTO.getGroupId())
+        return ResponseEntity.ok().build();
     }
 }
