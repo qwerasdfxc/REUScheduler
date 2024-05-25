@@ -46,10 +46,10 @@ public class RaspController {
 
     //TODO
     @GetMapping("/view/rasp")
-    public SchedDTO viewRasp(@RequestBody JSONObject jsonObject){
+    public SchedDTO viewRasp(@RequestBody ScheduleIdDTO scheduleIdDTO){
 //    public SchedDTO viewRasp(@RequestParam Long scheduleId ){
 
-        Long scheduleId = (long) jsonObject.get("scheduleId");
+        Long scheduleId = Long.valueOf(scheduleIdDTO.getScheduleId());
         Schedule schedule = scheduleRepository.findById(scheduleId).get();
 
 

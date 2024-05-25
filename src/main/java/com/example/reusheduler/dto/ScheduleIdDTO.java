@@ -10,5 +10,11 @@ import lombok.ToString;
 @Data
 public class ScheduleIdDTO {
 
-    private int scheduleId;
+    private Integer scheduleId;
+
+    private String  test;
+
 }
+
+
+
