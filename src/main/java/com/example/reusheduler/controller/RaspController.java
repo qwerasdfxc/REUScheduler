@@ -51,7 +51,7 @@ public class RaspController {
 
 
         Group group = groupRepository.findById(schedule.getGroupId()).get();
-        LessionInSchedule lessionInSchedule = lessionInScheduleRepository.findBySchedule(schedule);
+        LessionInSchedule lessionInSchedule = lessionInScheduleRepository.findFirstBySchedule(schedule);
         Professor professor = professorRepository.findById(lessionInSchedule.getProfessorId()).get();
         SchedDTO schedDTO = SchedDTO
                 .builder()

@@ -10,5 +10,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface LessionInScheduleRepository extends CrudRepository<LessionInSchedule, Long> {
 
-    LessionInSchedule findBySchedule(Schedule schedule);
+    LessionInSchedule findFirstBySchedule(Schedule schedule);
 }
