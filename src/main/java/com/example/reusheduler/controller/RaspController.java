@@ -25,7 +25,6 @@ import java.time.LocalDate;
 
 @RestController
 @CrossOrigin
-
 public class RaspController {
 
     private final ScheduleRepository scheduleRepository;
@@ -46,8 +45,6 @@ public class RaspController {
 
     //TODO
     @GetMapping("/view/rasp")
-    @CrossOrigin
-
     public SchedDTO viewRasp(@RequestBody ScheduleIdDTO scheduleIdDTO){
 //    public SchedDTO viewRasp(@RequestParam Long scheduleId ){
 
