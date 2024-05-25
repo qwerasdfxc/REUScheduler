@@ -6,11 +6,11 @@ import com.example.reusheduler.model.Group;
 import com.example.reusheduler.model.LessionInSchedule;
 import com.example.reusheduler.model.Schedule;
 import com.example.reusheduler.repository.GroupRepository;
-import com.example.reusheduler.repository.LessionInScheduleRepository;
 import com.example.reusheduler.repository.ScheduleRepository;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.time.LocalDate;
+import com.example.reusheduler.repository.LessionInScheduleRepository;
+import com.example.reusheduler.dto.RaspDTO;
 
 
 //первый модуль (01.09 – 31.10),
@@ -36,6 +36,7 @@ public class RaspController {
     }
 
 
+    //TODO
     @GetMapping("/view/rasp")
 //    public Schedule viewRasp(@RequestBody ScheduleIdDTO scheduleIdDTO){
     public SchedDTO viewRasp(@RequestParam Long scheduleId ){
@@ -57,5 +58,13 @@ public class RaspController {
 
         return schedDTO;
 
+    }
+
+    @PostMapping("/fill/rasp")
+    public ResponseEntity viewRasasdp(){
+
+
+//        groupRepository.findById(raspDTO.getGroupId())
+        return ResponseEntity.ok().build();
     }
 }
