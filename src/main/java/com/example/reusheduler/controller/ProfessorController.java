@@ -1,14 +1,14 @@
 package com.example.reusheduler.controller;
 
 import com.example.reusheduler.dto.ProfessorDTO;
-import com.example.reusheduler.model.Department;
-import com.example.reusheduler.model.Professor;
-import com.example.reusheduler.repository.DepartmentRepository;
-import com.example.reusheduler.repository.ProfessorRepository;
+import com.example.reusheduler.dto.SchedDTO;
+import com.example.reusheduler.dto.ScheduleIdDTO;
+import com.example.reusheduler.model.*;
+import com.example.reusheduler.repository.*;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,9 +19,19 @@ public class ProfessorController {
     private final ProfessorRepository professorRepository;
     private final DepartmentRepository departmentRepository;
 
-    public ProfessorController(ProfessorRepository professorRepository, DepartmentRepository departmentRepository) {
+    private final ScheduleRepository scheduleRepository;
+
+    private final GroupRepository groupRepository;
+
+    private final LessionInScheduleRepository lessionInScheduleRepository;
+
+
+    public ProfessorController(ProfessorRepository professorRepository, DepartmentRepository departmentRepository, ScheduleRepository scheduleRepository, GroupRepository groupRepository, LessionInScheduleRepository lessionInScheduleRepository) {
         this.professorRepository = professorRepository;
         this.departmentRepository = departmentRepository;
+        this.scheduleRepository = scheduleRepository;
+        this.groupRepository = groupRepository;
+        this.lessionInScheduleRepository = lessionInScheduleRepository;
     }
 
 //    @GetMapping("/test")
@@ -56,6 +66,37 @@ public class ProfessorController {
                         )
                         .collect(Collectors.toList())
         );
+    }
+
+
+
+    //TODO
+    @GetMapping("/view/rasp")
+    public SchedDTO viewRasp(@RequestBody ScheduleIdDTO scheduleIdDTO){
+//    public SchedDTO viewRasp(@RequestParam Long scheduleId ){
+
+        Long scheduleId = Long.valueOf(scheduleIdDTO.getScheduleId());
+        Schedule schedule = scheduleRepository.findById(scheduleId).get();
+
+
+        Group group = groupRepository.findById(schedule.getGroupId()).get();
+        LessionInSchedule lessionInSchedule = lessionInScheduleRepository.findFirstBySchedule(schedule);
+        Professor professor = professorRepository.findById(lessionInSchedule.getProfessorId()).get();
+        SchedDTO schedDTO = SchedDTO
+                .builder()
+                .id(schedule.getId())
+                .createDate(LocalDate.from(schedule.getCreateDate()))
+                .module(schedule.getModule())
+                .groupName(group.getGroupNumber())
+                .number(lessionInSchedule.getNumber())
+                .name(professor.getProfessorName())
+                .build();
+
+
+
+
+        return schedDTO;
+
     }
 
 }

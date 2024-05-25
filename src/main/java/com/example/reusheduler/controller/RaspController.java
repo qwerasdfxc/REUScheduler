@@ -42,34 +42,6 @@ public class RaspController {
     }
 
 
-    //TODO
-    @GetMapping("/view/rasp")
-    public SchedDTO viewRasp(@RequestBody ScheduleIdDTO scheduleIdDTO){
-//    public SchedDTO viewRasp(@RequestParam Long scheduleId ){
-
-        Long scheduleId = Long.valueOf(scheduleIdDTO.getScheduleId());
-        Schedule schedule = scheduleRepository.findById(scheduleId).get();
-
-
-        Group group = groupRepository.findById(schedule.getGroupId()).get();
-        LessionInSchedule lessionInSchedule = lessionInScheduleRepository.findFirstBySchedule(schedule);
-        Professor professor = professorRepository.findById(lessionInSchedule.getProfessorId()).get();
-        SchedDTO schedDTO = SchedDTO
-                .builder()
-                .id(schedule.getId())
-                .createDate(LocalDate.from(schedule.getCreateDate()))
-                .module(schedule.getModule())
-                .groupName(group.getGroupNumber())
-                .number(lessionInSchedule.getNumber())
-                .name(professor.getProfessorName())
-                .build();
-
-
-
-
-        return schedDTO;
-
-    }
 
     @PostMapping("/fill/rasp")
     public ResponseEntity viewRasasdp(){
