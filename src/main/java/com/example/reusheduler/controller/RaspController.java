@@ -46,6 +46,8 @@ public class RaspController {
 
     //TODO
     @GetMapping("/view/rasp")
+    @CrossOrigin
+
     public SchedDTO viewRasp(@RequestBody ScheduleIdDTO scheduleIdDTO){
 //    public SchedDTO viewRasp(@RequestParam Long scheduleId ){
 
