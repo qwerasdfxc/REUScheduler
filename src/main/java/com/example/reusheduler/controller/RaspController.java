@@ -24,6 +24,7 @@ import java.time.LocalDate;
 //четвертый модуль (01.04 – 31.06)
 
 @RestController
+@CrossOrigin()
 public class RaspController {
 
     private final ScheduleRepository scheduleRepository;
