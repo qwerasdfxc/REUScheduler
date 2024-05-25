@@ -9,6 +9,7 @@ import org.hibernate.annotations.BatchSize;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 
 
 @Table(name = "schedule", schema = "REUScheduler")
@@ -33,6 +34,24 @@ public class  Schedule {
     private LocalDateTime createDate;
 
 
-    @OneToMany(mappedBy = "schedule")
+    @OneToMany(mappedBy = "schedule", fetch = FetchType.EAGER)
+    @BatchSize(size = 3)
     private List<LessionInSchedule> scheduleList;
+
+    @Column(name = "group_id")
+    private Long groupId;
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Schedule schedule = (Schedule) o;
+        return Objects.equals(id, schedule.id) && Objects.equals(module, schedule.module) && Objects.equals(createDate, schedule.createDate) && Objects.equals(groupId, schedule.groupId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, module, createDate, groupId);
+    }
 }

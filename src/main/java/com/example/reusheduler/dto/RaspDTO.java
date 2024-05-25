@@ -15,8 +15,8 @@ public class RaspDTO {
     private Long groupId;
 
     private Long module;
-
-    private LocalDate startDate;
-
-    private LocalDate endDate;
+//
+//    private LocalDate startDate;
+//
+//    private LocalDate endDate;
 }

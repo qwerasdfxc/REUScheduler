@@ -67,6 +67,8 @@ public class DepartmentController {
                     .build();
             department.setId(234234L);
             departmentRepository.save(department);
+
+
             return ResponseEntity.ok().build();
         }
     }

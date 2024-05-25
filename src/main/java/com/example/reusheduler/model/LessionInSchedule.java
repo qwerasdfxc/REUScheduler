@@ -30,7 +30,7 @@ public class LessionInSchedule {
     private LocalDate studyDate;
 
 
-    @ManyToOne()
+    @ManyToOne(fetch =  FetchType.LAZY)
 //    @JoinColumn(name = "scheduleList")
     @JoinColumn(name="schedule_id")
 
