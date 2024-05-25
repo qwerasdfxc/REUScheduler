@@ -2,6 +2,7 @@ package com.example.reusheduler.controller;
 
 
 import com.example.reusheduler.dto.SchedDTO;
+import com.example.reusheduler.dto.ScheduleIdDTO;
 import com.example.reusheduler.model.Group;
 import com.example.reusheduler.model.LessionInSchedule;
 import com.example.reusheduler.model.Professor;
@@ -9,6 +10,7 @@ import com.example.reusheduler.model.Schedule;
 import com.example.reusheduler.repository.GroupRepository;
 import com.example.reusheduler.repository.ProfessorRepository;
 import com.example.reusheduler.repository.ScheduleRepository;
+import org.json.JSONObject;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.example.reusheduler.repository.LessionInScheduleRepository;
@@ -44,9 +46,10 @@ public class RaspController {
 
     //TODO
     @GetMapping("/view/rasp")
-//    public Schedule viewRasp(@RequestBody ScheduleIdDTO scheduleIdDTO){
-    public SchedDTO viewRasp(@RequestParam Long scheduleId ){
+    public SchedDTO viewRasp(@RequestBody JSONObject jsonObject){
+//    public SchedDTO viewRasp(@RequestParam Long scheduleId ){
 
+        Long scheduleId = (long) jsonObject.get("scheduleId");
         Schedule schedule = scheduleRepository.findById(scheduleId).get();
 
 
