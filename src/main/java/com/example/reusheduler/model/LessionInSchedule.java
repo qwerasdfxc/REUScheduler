@@ -47,6 +47,9 @@ public class LessionInSchedule {
 //    @BatchSize(size = 1000)
     private Lession lession;
 
+    @Column(name = "professor_id")
+    private Long professorId;
+
 //    @OneToMany(mappedBy = "lessionInSchedule", cascade = CascadeType.ALL, orphanRemoval = true)
 ////    @JoinColumn(name = "user_id")
 //    private List<LessionInSchedule> lessionInSchedules;

@@ -4,13 +4,14 @@ package com.example.reusheduler.controller;
 import com.example.reusheduler.dto.SchedDTO;
 import com.example.reusheduler.model.Group;
 import com.example.reusheduler.model.LessionInSchedule;
+import com.example.reusheduler.model.Professor;
 import com.example.reusheduler.model.Schedule;
 import com.example.reusheduler.repository.GroupRepository;
+import com.example.reusheduler.repository.ProfessorRepository;
 import com.example.reusheduler.repository.ScheduleRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.example.reusheduler.repository.LessionInScheduleRepository;
-import com.example.reusheduler.dto.RaspDTO;
 
 import java.time.LocalDate;
 
@@ -31,10 +32,13 @@ public class RaspController {
 
     private final LessionInScheduleRepository lessionInScheduleRepository;
 
-    public RaspController(ScheduleRepository scheduleRepository, GroupRepository groupRepository, LessionInScheduleRepository lessionInScheduleRepository) {
+    private final ProfessorRepository professorRepository;
+
+    public RaspController(ScheduleRepository scheduleRepository, GroupRepository groupRepository, LessionInScheduleRepository lessionInScheduleRepository, ProfessorRepository professorRepository) {
         this.scheduleRepository = scheduleRepository;
         this.groupRepository = groupRepository;
         this.lessionInScheduleRepository = lessionInScheduleRepository;
+        this.professorRepository = professorRepository;
     }
 
 
@@ -48,6 +52,7 @@ public class RaspController {
 
         Group group = groupRepository.findById(schedule.getGroupId()).get();
         LessionInSchedule lessionInSchedule = lessionInScheduleRepository.findBySchedule(schedule);
+        Professor professor = professorRepository.findById(lessionInSchedule.getProfessorId()).get();
         SchedDTO schedDTO = SchedDTO
                 .builder()
                 .id(schedule.getId())
@@ -55,7 +60,10 @@ public class RaspController {
                 .module(schedule.getModule())
                 .groupName(group.getGroupNumber())
                 .number(lessionInSchedule.getNumber())
+                .name(professor.getProfessorName())
                 .build();
+
+
 
 
         return schedDTO;

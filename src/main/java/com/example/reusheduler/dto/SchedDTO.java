@@ -21,4 +21,6 @@ public class SchedDTO {
     private String groupName;
 
     private Long number;
+
+    private String name;
 }
