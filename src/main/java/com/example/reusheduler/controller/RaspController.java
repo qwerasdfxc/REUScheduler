@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.*;
 import com.example.reusheduler.repository.LessionInScheduleRepository;
 import com.example.reusheduler.dto.RaspDTO;
 
+import java.time.LocalDate;
+
 
 //первый модуль (01.09 – 31.10),
 //второй модуль (01.11-31.12),
